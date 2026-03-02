@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"log"
 	"net/http"
 	"strings"
@@ -12,7 +13,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		"Dentist appointment at 3pm",
 		"Dinner at 7pm",
 	}
-	fmt.Fprint(w, strings.Join(reminders, "\n"), r.URL.Path[1:])
+	fmt.Fprint(w, strings.Join(reminders, "\n"), html.EscapeString(r.URL.Path[1:]))
 }
 
 func main() {
